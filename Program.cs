@@ -1,4 +1,5 @@
 ﻿using Intro.Busines;
+using Intro.DataAccess.Concretes;
 using Intro.Entities;
 
 Console.WriteLine("Hello, World!");
@@ -30,9 +31,9 @@ Console.WriteLine("Hello, World!");
 
 Console.WriteLine(" ");
 
-CourseManager courseManager = new CourseManager();
-Course[] courses2 = courseManager.GetAll();
-for (int i = 0; i < courses2.Length; i++)
+CourseManager courseManager = new CourseManager(new CourseDal());
+List<Course> courses2 = courseManager.GetAll();
+for (int i = 0; i < courses2.Count; i++)
 {
     Console.WriteLine(courses2[i].Name + " / " + courses2[i].Price + "TL");
 }
@@ -84,7 +85,7 @@ customer4.TaxNumber = "1234567891";
 
 //referance types --> array, class, interface...
 
-                              //101        //102      //103       //104
+                              //101       //102      //103       //104
 BaseCustomer[] customers = { customer1, customer2, customer3, customer4 };
 
 //polymorphism
@@ -92,3 +93,4 @@ foreach (BaseCustomer customer in customers)
 {
     Console.WriteLine(customer.CustomerNumber);
 }
+
